@@ -35,7 +35,7 @@ async function redirectIfNotAuthenticated() {
   
   if (!isAuthenticated) {
     // Redireciona para a página de splash
-    window.location.href = 'splash.html';
+    window.location.href = 'index.html';
   }
   
   return isAuthenticated;
@@ -69,7 +69,7 @@ async function logout() {
     }
     
     // Redireciona para a página de splash após o logout
-    window.location.href = 'splash.html';
+    window.location.href = 'index.html';
     return true;
   } catch (err) {
     console.error('Erro ao fazer logout:', err);
