@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Amplia Militar</title>
+  <link rel="stylesheet" href="css/login.css">
+  <!-- Importando o cliente Supabase -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/supabase-js/2.39.7/supabase.min.js"></script>
+  <script type="module" src="js/auth-manager.js"></script>
+
+</head>
+<body>
+  <main class="login-container">
+    <h1>Bem-vindos</h1>
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Seu email" required>
+      </div>
+      <div class="form-group">
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" placeholder="Sua senha" required>
+      </div>
+      <div id="errorMessage" class="error-message">Email ou senha incorretos. Tente novamente.</div>
+      <button type="submit" id="loginButton">Entrar</button>
+      <a href="#" id="resetPasswordLink" class="forgot-password">Esqueceu a senha?</a>
+    </form>
+    <div class="pagamento">
+      <h2>Acesso Premium</h2>
+      <p>Realize o pagamento via Pix de R$29,90 para liberar acesso mensal:</p>
+      <div class="qrcode">
+        <!-- Placeholder para QR Code -->
+		<img src="assets/images/qrcode.png" alt="Exemplo" class="img-responsiva">
+
+      </div>
+      <p class="info-pagamento">Após o pagamento, seu acesso será liberado em até 24 horas.</p>
+    </div>
+    <p>Não tem cadastro? <a href="register.html" class="register-link">Registre-se aqui</a></p>
+  </main>
+    
+  <div id="loading" class="loading-overlay">
+    <div class="spinner"></div>
+  </div>
+
+  <script>
+
+  </script>
+  <script type="module" src="js/register.js"></script><!-- Funções específicas da página -->
+</body>
+</html>

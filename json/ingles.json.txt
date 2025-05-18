@@ -1,0 +1,86 @@
+{
+  "materia": "Inglês",
+  "totalQuestoes": 520,
+  "questoes": [
+    {
+      "id": 1,
+      "enunciado": "Read the text and answer the question:\n\n'The United Nations Climate Change Conference, COP26, was held in Glasgow, Scotland in 2021. The conference brought together nearly 200 countries to discuss actions to tackle climate change.'\n\nAccording to the text, COP26 was held in:",
+      "alternativas": [
+        "The United States",
+        "Scotland",
+        "England",
+        "Ireland",
+        "Wales"
+      ],
+      "resposta": 1,
+      "explicacao": "De acordo com o texto, a COP26 (Conferência das Nações Unidas sobre Mudanças Climáticas) foi realizada em Glasgow, Escócia (Scotland) em 2021.",
+      "dificuldade": "Fácil",
+      "concurso": "EsPCEx 2023",
+      "assunto": "Interpretação de Texto"
+    },
+    {
+      "id": 2,
+      "enunciado": "Choose the alternative that correctly completes the sentence:\n\n'If I ________ more time, I ________ the exam better.'",
+      "alternativas": [
+        "had / would prepare",
+        "have / would prepare",
+        "had / prepared",
+        "have / prepared",
+        "had / would have prepared"
+      ],
+      "resposta": 0,
+      "explicacao": "A estrutura correta para o segundo condicional (hipótese no presente/futuro) é: 'If + Simple Past, would + bare infinitive'. Portanto, a forma correta é 'If I had more time, I would prepare the exam better.'",
+      "dificuldade": "Média",
+      "concurso": "ESA 2024",
+      "assunto": "Conditional Sentences"
+    },
+    {
+      "id": 3,
+      "enunciado": "Choose the correct alternative to complete the sentence:\n\n'She has been working on this project ________ March.'",
+      "alternativas": [
+        "since",
+        "for",
+        "from",
+        "during",
+        "at"
+      ],
+      "resposta": 0,
+      "explicacao": "Utilizamos 'since' quando nos referimos a um ponto específico no tempo em que algo começou. Neste caso, março é um mês específico que marca o início do trabalho dela no projeto. Portanto, a resposta correta é 'since'.",
+      "dificuldade": "Fácil",
+      "concurso": "AFA 2023",
+      "assunto": "Preposições"
+    },
+    {
+      "id": 4,
+      "enunciado": "Read the text and answer the question:\n\n'Despite significant technological advances, many developing countries still face challenges in providing basic healthcare services to their populations. Access to medical care in rural areas remains particularly problematic.'\n\nAccording to the text:",
+      "alternativas": [
+        "Technological advances have eliminated healthcare challenges in developing countries.",
+        "Rural areas have better healthcare access than urban areas in developing countries.",
+        "Basic healthcare services are easily accessible throughout developing countries.",
+        "Despite technological progress, healthcare access in rural areas of developing countries is still a problem.",
+        "Developing countries are not investing in technological advances for healthcare."
+      ],
+      "resposta": 3,
+      "explicacao": "De acordo com o texto, apesar dos avanços tecnológicos significativos, muitos países em desenvolvimento ainda enfrentam desafios para fornecer serviços básicos de saúde às suas populações, e o acesso a cuidados médicos em áreas rurais continua sendo particularmente problemático.",
+      "dificuldade": "Média",
+      "concurso": "EsPCEx 2022",
+      "assunto": "Interpretação de Texto"
+    },
+    {
+      "id": 5,
+      "enunciado": "Choose the alternative that contains the correct passive voice form for the sentence:\n\n'The military academy trains the cadets every day.'",
+      "alternativas": [
+        "The cadets are trained every day by the military academy.",
+        "The cadets were trained every day by the military academy.",
+        "The cadets have been trained every day by the military academy.",
+        "The cadets had been trained every day by the military academy.",
+        "The cadets will be trained every day by the military academy."
+      ],
+      "resposta": 0,
+      "explicacao": "Para transformar uma frase da voz ativa para a voz passiva, o objeto da frase ativa (the cadets) torna-se o sujeito da frase passiva, e usa-se o verbo 'to be' no mesmo tempo verbal da frase ativa (present simple), seguido do particípio passado do verbo principal. Como a frase original está no presente simples ('trains'), a forma correta da voz passiva é 'The cadets are trained every day by the military academy.'",
+      "dificuldade": "Média",
+      "concurso": "ESA 2023",
+      "assunto": "Voz Passiva"
+    }
+  ]
+}

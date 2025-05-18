@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amplia Militar - Prepare-se para seu concurso</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f0f2f5;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    
+    .splash-container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    
+    /* Header */
+    header {
+      background-color: #2e4057;
+      padding: 15px 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      color: white;
+      text-decoration: none;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    
+    .logo .icon {
+      margin-right: 10px;
+      font-size: 1.8rem;
+    }
+    
+    .nav-buttons {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .btn {
+      padding: 10px 18px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    
+    .btn-primary {
+      background-color: #4299e1;
+      color: white;
+      border: none;
+    }
+    
+    .btn-primary:hover {
+      background-color: #3182ce;
+    }
+    
+    .btn-outline {
+      background-color: transparent;
+      color: white;
+      border: 1px solid white;
+    }
+    
+    .btn-outline:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(to bottom right, #2e4057, #4a5568);
+      color: white;
+      padding: 100px 20px;
+      text-align: center;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 40px;
+    }
+    
+    .btn-large {
+      padding: 14px 28px;
+      font-size: 1rem;
+    }
+    
+    /* Features Section */
+    .features {
+      background-color: white;
+      padding: 80px 20px;
+    }
+    
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      color: #2e4057;
+      margin-bottom: 50px;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .feature-card {
+      background-color: #f8fafc;
+      border-radius: 8px;
+      padding: 30px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    }
+    
+    .feature-icon {
+      background-color: #ebf8ff;
+      color: #4299e1;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+    
+    .feature-card h3 {
+      font-size: 1.3rem;
+      color: #2e4057;
+      margin-bottom: 15px;
+    }
+    
+    .feature-card p {
+      color: #4a5568;
+      line-height: 1.6;
+    }
+    
+    /* Testimonials */
+    .testimonials {
+      background-color: #f0f2f5;
+      padding: 80px 20px;
+    }
+    
+    .testimonials-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .testimonial-card {
+      background-color: white;
+      border-radius: 8px;
+      padding: 30px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+      position: relative;
+    }
+    
+    .testimonial-content {
+      font-style: italic;
+      color: #4a5568;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+    }
+    
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #e2e8f0;
+      margin-right: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #a0aec0;
+      font-weight: bold;
+    }
+    
+    .author-info h4 {
+      font-size: 1.1rem;
+      color: #2e4057;
+    }
+    
+    .author-info p {
+      color: #718096;
+      font-size: 0.9rem;
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(to right, #4299e1, #3182ce);
+      color: white;
+      padding: 80px 20px;
+      text-align: center;
+    }
+    
+    .cta-content {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .cta-section h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    
+    .cta-section p {
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+      color: rgba(255, 255, 255, 0.9);
+    }
+    
+    /* Footer */
+    footer {
+      background-color: #2e4057;
+      color: white;
+      padding: 40px 20px;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+    }
+    
+    .footer-column h3 {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 40px;
+      height: 3px;
+      background-color: #4299e1;
+    }
+    
+    .footer-column ul {
+      list-style: none;
+    }
+    
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-column a {
+      color: #e2e8f0;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    
+    .footer-column a:hover {
+      color: #4299e1;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
+    }
+    
+    .social-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s ease;
+    }
+    
+    .social-icon:hover {
+      background-color: #4299e1;
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 40px;
+      color: #a0aec0;
+      font-size: 0.9rem;
+    }
+    
+    /* Animation */
+    .fade-in {
+      animation: fadeIn 1s ease-in-out;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Media Queries */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+      }
+      
+      .feature-card {
+        padding: 20px;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .header-content {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .nav-buttons {
+        width: 100%;
+        justify-content: space-between;
+      }
+      
+      .hero {
+        padding: 60px 20px;
+      }
+      
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    /* Preloader Animation */
+    .preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #2e4057;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    
+    .preloader.fade-out {
+      opacity: 0;
+      visibility: hidden;
+    }
+    
+    .loader {
+      width: 80px;
+      height: 80px;
+      border: 5px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 1s linear infinite;
+      position: relative;
+    }
+    
+    .loader::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      border: 5px solid transparent;
+      border-radius: 50%;
+      border-bottom-color: #4299e1;
+      animation: spin 1.5s linear infinite reverse;
+    }
+  </style>
+</head>
+<body>
+  <!-- Preloader -->
+  <div class="preloader">
+    <div class="loader"></div>
+  </div>
+
+  <div class="splash-container">
+    <!-- Header -->
+    <header>
+      <div class="header-content">
+        <a href="#" class="logo">
+          <span class="icon">🎯</span>
+          <span>Amplia Militar</span>
+        </a>
+        <div class="nav-buttons">
+          <a href="login.html" class="btn btn-outline">Entrar</a>
+          <a href="register.html" class="btn btn-primary">Cadastrar</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content fade-in">
+        <h1>Prepare-se para o seu concurso militar</h1>
+        <p>Mais de 5.000 questões específicas para concursos militares com explicações detalhadas, simulados e monitoramento de desempenho.</p>
+        <div class="cta-buttons">
+          <a href="login.html" class="btn btn-primary btn-large">Comece Agora</a>
+          <a href="#" class="btn btn-outline btn-large">Conhecer Planos</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+      <h2 class="section-title">Por que escolher o Quiz Militar?</h2>
+      <div class="features-grid">
+        <div class="feature-card fade-in">
+          <div class="feature-icon">📚</div>
+          <h3>Banco de Questões Exclusivo</h3>
+          <p>Questões específicas para EsPCEx, ESA, AFA, ITA, Escola Naval e outros concursos militares, atualizadas constantemente.</p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon">📊</div>
+          <h3>Análise de Desempenho</h3>
+          <p>Acompanhe seu progresso com gráficos detalhados e identifique seus pontos fortes e fracos em cada matéria.</p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon">🏆</div>
+          <h3>Simulados Realistas</h3>
+          <p>Simule o ambiente de prova com nossos simulados personalizados para cada concurso militar.</p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon">🔍</div>
+          <h3>Explicações Detalhadas</h3>
+          <p>Entenda o raciocínio por trás de cada questão com nossas explicações elaboradas por militares aprovados.</p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon">📱</div>
+          <h3>Estude em Qualquer Lugar</h3>
+          <p>Acesse o conteúdo pelo computador, tablet ou celular, com ou sem internet.</p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon">⚡</div>
+          <h3>Planos Acessíveis</h3>
+          <p>Acesso vitalício com pagamento único ou planos mensais adaptados à sua necessidade.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+      <h2 class="section-title">O que dizem nossos aprovados</h2>
+      <div class="testimonials-container">
+        <div class="testimonial-card fade-in">
+          <div class="testimonial-content">
+            "O Quiz Militar foi fundamental para minha aprovação na EsPCEx. A plataforma me ajudou a identificar minhas fraquezas e focar nos tópicos mais recorrentes."
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">ML</div>
+            <div class="author-info">
+              <h4>Matheus Lima</h4>
+              <p>Aprovado EsPCEx 2024</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-in">
+          <div class="testimonial-content">
+            "Os simulados são extremamente realistas e as explicações das questões são completas. Consegui melhorar meu desempenho em física e matemática, minhas matérias mais difíceis."
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">CS</div>
+            <div class="author-info">
+              <h4>Carolina Silva</h4>
+              <p>Aprovada AFA 2023</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="cta-content fade-in">
+        <h2>Pronto para começar sua jornada?</h2>
+        <p>Junte-se a milhares de estudantes que realizaram o sonho da carreira militar</p>
+        <a href="login.html" class="btn btn-outline btn-large">Comece Hoje Mesmo</a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>Quiz Militar</h3>
+          <p>A melhor plataforma de preparação para concursos militares do Brasil.</p>
+          <div class="social-links">
+            <a href="#" class="social-icon">f</a>
+            <a href="#" class="social-icon">in</a>
+            <a href="#" class="social-icon">ig</a>
+            <a href="#" class="social-icon">yt</a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Links Rápidos</h3>
+          <ul>
+            <li><a href="login.html">Início</a></li>
+            <li><a href="#">Planos</a></li>
+            <li><a href="#">Concursos</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contato</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Concursos</h3>
+          <ul>
+            <li><a href="#">EsPCEx</a></li>
+            <li><a href="#">ESA</a></li>
+            <li><a href="#">AFA</a></li>
+            <li><a href="#">Escola Naval</a></li>
+            <li><a href="#">Polícia Militar</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Contato</h3>
+          <ul>
+            <li><a href="mailto:contato@quizmilitar.com.br">contato@quizmilitar.com.br</a></li>
+            <li><a href="tel:+55119XXXXXXXX">(11) 9XXXX-XXXX</a></li>
+            <li>Rio de Janeiro, RJ</li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        &copy; 2025 Amplia Militar. Todos os direitos reservados.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Preloader animation
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(function() {
+        document.querySelector('.preloader').classList.add('fade-out');
+      }, 1500);
+      
+      // Link actions
+      const loginBtn = document.querySelector('.btn-outline');
+      const registerBtn = document.querySelector('.btn-primary');
+      const startNowBtns = document.querySelectorAll('.btn-large.btn-primary');
+      
+      loginBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        alert('Esta ação redirecionaria para a página de login em uma aplicação real.');
+      });
+      
+      registerBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        alert('Esta ação redirecionaria para a página de cadastro em uma aplicação real.');
+      });
+      
+      startNowBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          alert('Esta ação redirecionaria para a página de cadastro em uma aplicação real.');
+        });
+      });
+      
+      // Scroll animation for elements
+      const fadeElements = document.querySelectorAll('.fade-in');
+      
+      const fadeInOnScroll = function() {
+        fadeElements.forEach(element => {
+          const elementTop = element.getBoundingClientRect().top;
+          const windowHeight = window.innerHeight;
+          
+          if (elementTop < windowHeight - 100) {
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
+          }
+        });
+      };
+      
+      // Set initial state for elements
+      fadeElements.forEach(element => {
+        if (element.parentElement.className !== 'hero-content') {
+          element.style.opacity = '0';
+          element.style.transform = 'translateY(20px)';
+          element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        }
+      });
+      
+      // Add scroll event listener
+      window.addEventListener('scroll', fadeInOnScroll);
+      
+      // Trigger once on load to check for elements already in view
+      fadeInOnScroll();
+    });
+  </script>
+</body>
+</html>

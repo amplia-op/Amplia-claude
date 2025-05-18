@@ -1,0 +1,86 @@
+{
+  "materia": "Português",
+  "totalQuestoes": 850,
+  "questoes": [
+    {
+      "id": 1,
+      "enunciado": "Assinale a alternativa em que todas as palavras estão grafadas corretamente:",
+      "alternativas": [
+        "Exceção, excesso, ascenção, assessor",
+        "Excesso, exceção, ascensão, assessor",
+        "Exceção, excesso, ascensão, acessor",
+        "Excessão, excesso, ascensão, assessor",
+        "Exceção, excesso, ascenção, acessor"
+      ],
+      "resposta": 1,
+      "explicacao": "A grafia correta é: 'excesso' (abundância), 'exceção' (aquilo que foge à regra), 'ascensão' (ato de subir) e 'assessor' (auxiliar).",
+      "dificuldade": "Média",
+      "concurso": "EsPCEx 2023",
+      "assunto": "Ortografia"
+    },
+    {
+      "id": 2,
+      "enunciado": "Assinale a alternativa que apresenta o correto emprego da crase:",
+      "alternativas": [
+        "Refiro-me à pessoas que trabalham na empresa.",
+        "Voltei à casa de meus pais ontem.",
+        "Fui à Roma no ano passado.",
+        "Comuniquei o problema à gerente.",
+        "Ela se referiu à minha prima na reunião."
+      ],
+      "resposta": 4,
+      "explicacao": "A crase é a fusão da preposição 'a' com o artigo feminino 'a'. Na opção 'Ela se referiu à minha prima na reunião', o verbo 'referir-se' exige a preposição 'a' e temos um artigo definido feminino 'a' antes de 'minha prima', portanto, usa-se a crase.",
+      "dificuldade": "Difícil",
+      "concurso": "ESA 2024",
+      "assunto": "Crase"
+    },
+    {
+      "id": 3,
+      "enunciado": "Identifique a alternativa em que a regência verbal está incorreta:",
+      "alternativas": [
+        "Prefiro estudar de manhã do que à noite.",
+        "O professor assistiu o filme ontem.",
+        "Ele visa ao cargo de diretor.",
+        "Aspirava a uma promoção na empresa.",
+        "Ela obedeceu ao regulamento."
+      ],
+      "resposta": 1,
+      "explicacao": "O verbo 'preferir' exige a preposição 'a' e não a conjunção 'do que'. O correto seria: 'Prefiro estudar de manhã a estudar à noite'. Os demais verbos apresentam regência correta.",
+      "dificuldade": "Média",
+      "concurso": "AFA 2023",
+      "assunto": "Regência Verbal"
+    },
+    {
+      "id": 4,
+      "enunciado": "Marque a alternativa que contém um período composto por subordinação e coordenação:",
+      "alternativas": [
+        "Estudei muito, porém não fui aprovado.",
+        "Quando cheguei, percebi que a porta estava aberta e entrei.",
+        "Não sabia se devia ir ou ficar.",
+        "O candidato que estudou foi aprovado.",
+        "Verifique se há erros no texto."
+      ],
+      "resposta": 1,
+      "explicacao": "Na alternativa 'Quando cheguei, percebi que a porta estava aberta e entrei', temos coordenação entre 'percebi' e 'entrei' (aditiva) e subordinação em 'Quando cheguei' (subordinada adverbial temporal) e 'que a porta estava aberta' (subordinada substantiva objetiva direta).",
+      "dificuldade": "Difícil",
+      "concurso": "EsPCEx 2022",
+      "assunto": "Análise Sintática"
+    },
+    {
+      "id": 5,
+      "enunciado": "Assinale a opção em que há erro de concordância verbal:",
+      "alternativas": [
+        "Mais de um aluno faltou à aula.",
+        "Os Estados Unidos são uma potência mundial.",
+        "Haviam muitos candidatos na sala.",
+        "Um grupo de estudantes organizou o evento.",
+        "Tu e ele sois responsáveis pelo projeto."
+      ],
+      "resposta": 2,
+      "explicacao": "O verbo 'haver' no sentido de 'existir' é impessoal, ou seja, não tem sujeito e deve ficar na 3ª pessoa do singular. O correto seria: 'Havia muitos candidatos na sala'.",
+      "dificuldade": "Média",
+      "concurso": "ESA 2023",
+      "assunto": "Concordância Verbal"
+    }
+  ]
+}

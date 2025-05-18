@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assuntos - Amplia Militar</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f0f2f5;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    
+    .container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    
+    /* Header */
+    header {
+      background-color: #2e4057;
+      padding: 15px 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      color: white;
+      text-decoration: none;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    
+    .logo .icon {
+      margin-right: 10px;
+      font-size: 1.8rem;
+    }
+    
+    .nav-buttons {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .btn {
+      padding: 10px 18px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    
+    .btn-primary {
+      background-color: #4299e1;
+      color: white;
+      border: none;
+    }
+    
+    .btn-primary:hover {
+      background-color: #3182ce;
+    }
+    
+    .btn-outline {
+      background-color: transparent;
+      color: white;
+      border: 1px solid white;
+    }
+    
+    .btn-outline:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Navigation */
+    .main-nav {
+      background-color: #f8fafc;
+      padding: 15px 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    
+    .nav-links {
+      display: flex;
+      list-style: none;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .nav-links li a {
+      color: #2e4057;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: color 0.2s ease;
+      position: relative;
+    }
+    
+    .nav-links li a:hover {
+      color: #4299e1;
+    }
+    
+    .nav-links li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 3px;
+      bottom: -8px;
+      left: 50%;
+      background-color: #4299e1;
+      transform: translateX(-50%);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-links li a:hover::after,
+    .nav-links li a.active::after {
+      width: 100%;
+    }
+    
+    .nav-links li a.active {
+      color: #4299e1;
+    }
+    
+    /* Page Title */
+    .page-title {
+      background: linear-gradient(to right, #2e4057, #4a5568);
+      color: white;
+      padding: 50px 20px;
+      text-align: center;
+    }
+    
+    .page-title h1 {
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+    }
+    
+    .page-title p {
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
+      color: rgba(255, 255, 255, 0.9);
+    }
+    
+    /* Subjects Grid */
+    .subjects-section {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .subjects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    
+    .subject-card {
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+    
+    .subject-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    }
+    
+    .subject-header {
+      height: 160px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(to bottom right, #4299e1, #3182ce);
+    }
+    
+    .subject-icon {
+      font-size: 3.5rem;
+      color: white;
+    }
+    
+    .subject-content {
+      padding: 25px;
+    }
+    
+    .subject-content h3 {
+      font-size: 1.4rem;
+      color: #2e4057;
+      margin-bottom: 10px;
+    }
+    
+    .subject-content p {
+      color: #4a5568;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      height: 80px;
+    }
+    
+    .subject-stats {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+    }
+    
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .stat-value {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #2e4057;
+    }
+    
+    .stat-label {
+      color: #718096;
+      font-size: 0.8rem;
+    }
+    
+    .card-actions {
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .btn-card {
+      padding: 10px 16px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+    
+    .btn-card-primary {
+      background-color: #4299e1;
+      color: white;
+      flex: 1;
+      margin-right: 10px;
+    }
+    
+    .btn-card-primary:hover {
+      background-color: #3182ce;
+    }
+    
+    .btn-card-secondary {
+      background-color: #e2e8f0;
+      color: #4a5568;
+      flex: 0 0 auto;
+      width: 44px;
+    }
+    
+    .btn-card-secondary:hover {
+      background-color: #cbd5e0;
+    }
+    
+    /* Progress Section */
+    .progress-section {
+      background-color: white;
+      padding: 60px 20px;
+      margin-top: 40px;
+    }
+    
+    .progress-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .section-title {
+      text-align: center;
+      font-size: 1.8rem;
+      color: #2e4057;
+      margin-bottom: 40px;
+    }
+    
+    .progress-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    
+    .progress-card {
+      background-color: #f8fafc;
+      border-radius: 8px;
+      padding: 25px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+    
+    .progress-card h3 {
+      font-size: 1.2rem;
+      color: #4a5568;
+      margin-bottom: 20px;
+    }
+    
+    .progress-value {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #2e4057;
+      margin-bottom: 15px;
+    }
+    
+    .progress-bar-container {
+      height: 8px;
+      background-color: #e2e8f0;
+      border-radius: 4px;
+      margin-bottom: 15px;
+      overflow: hidden;
+    }
+    
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(to right, #4299e1, #3182ce);
+      border-radius: 4px;
+    }
+    
+    .progress-label {
+      font-size: 0.9rem;
+      color: #718096;
+    }
+    
+    /* Simulator Card */
+    .simulator-card {
+      margin-top: 30px;
+      background: linear-gradient(to bottom right, #2e4057, #4a5568);
+      border-radius: 8px;
+      padding: 30px;
+      color: white;
+      text-align: center;
+    }
+    
+    .simulator-card h3 {
+      font-size: 1.6rem;
+      margin-bottom: 15px;
+    }
+    
+    .simulator-card p {
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 25px;
+      font-size: 1.1rem;
+    }
+    
+    /* Footer */
+    footer {
+      background-color: #2e4057;
+      color: white;
+      padding: 40px 20px;
+      margin-top: auto;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+    }
+    
+    .footer-column h3 {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 40px;
+      height: 3px;
+      background-color: #4299e1;
+    }
+    
+    .footer-column ul {
+      list-style: none;
+    }
+    
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-column a {
+      color: #e2e8f0;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    
+    .footer-column a:hover {
+      color: #4299e1;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
+    }
+    
+    .social-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s ease;
+    }
+    
+    .social-icon:hover {
+      background-color: #4299e1;
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 40px;
+      color: #a0aec0;
+      font-size: 0.9rem;
+    }
+    
+    /* Animation */
+    .fade-in {
+      animation: fadeIn 1s ease-in-out;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Media Queries */
+    @media (max-width: 768px) {
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+      
+      .subject-content p {
+        height: auto;
+      }
+      
+      .page-title h1 {
+        font-size: 1.8rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .header-content {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .nav-buttons {
+        width: 100%;
+        justify-content: space-between;
+      }
+      
+      .page-title {
+        padding: 30px 20px;
+      }
+      
+      .page-title h1 {
+        font-size: 1.6rem;
+      }
+      
+      .subjects-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="header-content">
+        <a href="login.html" class="logo">
+          <span class="icon">🎯</span>
+          <span>Quiz Militar</span>
+        </a>
+        <div class="nav-buttons">
+          <a href="#" class="btn btn-outline">Entrar</a>
+          <a href="#" class="btn btn-primary">Cadastrar</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+      <ul class="nav-links">
+        <li><a href="splash.html">Início</a></li>
+        <li><a href="assuntos.html" class="active">Assuntos</a></li>
+        <li><a href="#">Planos</a></li>
+        <li><a href="#">Meu Progresso</a></li>
+        <li><a href="#">Perfil</a></li>
+      </ul>
+    </nav>
+
+    <!-- Page Title -->
+    <section class="page-title">
+      <h1>Assuntos</h1>
+      <p>Escolha a matéria que deseja estudar e pratique com questões específicas para concursos militares</p>
+    </section>
+
+    <!-- Subjects Grid -->
+    <section class="subjects-section">
+      <div class="subjects-grid">
+        <!-- Português -->
+        <div class="subject-card fade-in">
+          <div class="subject-header">
+            <div class="subject-icon">📝</div>
+          </div>
+          <div class="subject-content">
+            <h3>Português</h3>
+            <p>Gramática, interpretação de texto, literatura e redação para concursos militares.</p>
+            <div class="subject-stats">
+              <div class="stat-item">
+                <div class="stat-value">850</div>
+                <div class="stat-label">Questões</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">75%</div>
+                <div class="stat-label">Seu progresso</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">65%</div>
+                <div class="stat-label">Acertos</div>
+              </div>
+            </div>
+            <div class="card-actions">
+              <a href="javascript:loadQuestions('portugues')" class="btn-card btn-card-primary">Praticar Agora</a>
+              <a href="#" class="btn-card btn-card-secondary">?</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Matemática -->
+        <div class="subject-card fade-in">
+          <div class="subject-header">
+            <div class="subject-icon">📊</div>
+          </div>
+          <div class="subject-content">
+            <h3>Matemática</h3>
+            <p>Álgebra, geometria, funções, trigonometria e matemática financeira.</p>
+            <div class="subject-stats">
+              <div class="stat-item">
+                <div class="stat-value">920</div>
+                <div class="stat-label">Questões</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">62%</div>
+                <div class="stat-label">Seu progresso</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">58%</div>
+                <div class="stat-label">Acertos</div>
+              </div>
+            </div>
+            <div class="card-actions">
+              <a href="javascript:loadQuestions('matematica')" class="btn-card btn-card-primary">Praticar Agora</a>
+              <a href="#" class="btn-card btn-card-secondary">?</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Geografia -->
+        <div class="subject-card fade-in">
+          <div class="subject-header">
+            <div class="subject-icon">🌎</div>
+          </div>
+          <div class="subject-content">
+            <h3>Geografia</h3>
+            <p>Geografia física, humana, do Brasil e geopolítica mundial.</p>
+            <div class="subject-stats">
+              <div class="stat-item">
+                <div class="stat-value">680</div>
+                <div class="stat-label">Questões</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">45%</div>
+                <div class="stat-label">Seu progresso</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">72%</div>
+                <div class="stat-label">Acertos</div>
+              </div>
+            </div>
+            <div class="card-actions">
+              <a href="javascript:loadQuestions('geografia')" class="btn-card btn-card-primary">Praticar Agora</a>
+              <a href="#" class="btn-card btn-card-secondary">?</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- História -->
+        <div class="subject-card fade-in">
+          <div class="subject-header">
+            <div class="subject-icon">📚</div>
+          </div>
+          <div class="subject-content">
+            <h3>História</h3>
+            <p>História do Brasil, História Militar e História Geral para concursos.</p>
+            <div class="subject-stats">
+              <div class="stat-item">
+                <div class="stat-value">750</div>
+                <div class="stat-label">Questões</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">58%</div>
+                <div class="stat-label">Seu progresso</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">68%</div>
+                <div class="stat-label">Acertos</div>
+              </div>
+            </div>
+            <div class="card-actions">
+              <a href="javascript:loadQuestions('historia')" class="btn-card btn-card-primary">Praticar Agora</a>
+              <a href="#" class="btn-card btn-card-secondary">?</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inglês -->
+        <div class="subject-card fade-in">
+          <div class="subject-header">
+            <div class="subject-icon">🌐</div>
+          </div>
+          <div class="subject-content">
+            <h3>Inglês</h3>
+            <p>Gramática, interpretação de texto e vocabulário em inglês.</p>
+            <div class="subject-stats">
+              <div class="stat-item">
+                <div class="stat-value">520</div>
+                <div class="stat-label">Questões</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">38%</div>
+                <div class="stat-label">Seu progresso</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">70%</div>
+                <div class="stat-label">Acertos</div>
+              </div>
+            </div>
+            <div class="card-actions">
+              <a href="javascript:loadQuestions('ingles')" class="btn-card btn-card-primary">Praticar Agora</a>
+              <a href="#" class="btn-card btn-card-secondary">?</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Simulado -->
+        <div class="subject-card fade-in simulator-card">
+          <h3>Simulado Completo</h3>
+          <p>Teste seus conhecimentos com um simulado completo, seguindo o formato oficial dos concursos militares.</p>
+          <div class="card-actions">
+            <a href="javascript:loadSimulado()" class="btn-card btn-card-primary" style="width: 100%; margin: 0;">Iniciar Simulado</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Progress Section -->
+    <section class="progress-section">
+      <div class="progress-content">
+        <h2 class="section-title">Seu Progresso</h2>
+        <div class="progress-stats">
+          <div class="progress-card fade-in">
+            <h3>Questões Respondidas</h3>
+            <div class="progress-value">1,245</div>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 65%;"></div>
+            </div>
+            <div class="progress-label">65% do total disponível</div>
+          </div>
+          <div class="progress-card fade-in">
+            <h3>Taxa de Acerto</h3>
+            <div class="progress-value">68%</div>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 68%;"></div>
+            </div>
+            <div class="progress-label">809 de 1,245 questões</div>
+          </div>
+          <div class="progress-card fade-in">
+            <h3>Tempo Médio por Questão</h3>
+            <div class="progress-value">1:24</div>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 70%;"></div>
+            </div>
+            <div class="progress-label">Meta: 1:00 minuto</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>Quiz Militar</h3>
+          <p>A melhor plataforma de preparação para concursos militares do Brasil.</p>
+          <div class="social-links">
+            <a href="#" class="social-icon">f</a>
+            <a href="#" class="social-icon">in</a>
+            <a href="#" class="social-icon">ig</a>
+            <a href="#" class="social-icon">yt</a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Links Rápidos</h3>
+          <ul>
+            <li><a href="login.html">Início</a></li>
+            <li><a href="assuntos.html">Assuntos</a></li>
+            <li><a href="#">Planos</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contato</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Concursos</h3>
+          <ul>
+            <li><a href="#">EsPCEx</a></li>
+            <li><a href="#">ESA</a></li>
+            <li><a href="#">AFA</a></li>
+            <li><a href="#">Escola Naval</a></li>
+            <li><a href="#">Polícia Militar</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Contato</h3>
+          <ul>
+            <li><a href="mailto:contato@quizmilitar.com.br">contato@quizmilitar.com.br</a></li>
+            <li><a href="tel:+55119XXXXXXXX">(11) 9XXXX-XXXX</a></li>
+            <li>São Paulo, SP</li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        &copy; 2025 Quiz Militar. Todos os direitos reservados.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Preloader simulation
+    document.addEventListener('DOMContentLoaded', function() {
+      // Scroll animation for elements
+      const fadeElements = document.querySelectorAll('.fade-in');
+      
+      const fadeInOnScroll = function() {
+        fadeElements.forEach(element => {
+          const elementTop = element.getBoundingClientRect().top;
+          const windowHeight = window.innerHeight;
+          
+          if (elementTop < windowHeight - 100) {
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
+          }
+        });
+      };
+      
+      // Set initial state for elements
+      fadeElements.forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(20px)';
+        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      });
+      
+      // Add scroll event listener
+      window.addEventListener('scroll', fadeInOnScroll);
+      
+      // Trigger once on load to check for elements already in view
+      fadeInOnScroll();
+    });
+    
+    // Função para carregar questões de uma matéria específica
+    function loadQuestions(subject) {
+      // Em uma implementação real, esta função carregaria as questões do arquivo JSON correspondente
+      alert(`Carregando questões de ${subject}. Em uma implementação real, isso carregaria o arquivo ${subject}.json com as questões.`);
+      // Aqui você redirecionaria para a página de questões ou carregaria dinamicamente as questões
+    }
+    
+    // Função para iniciar um simulado completo
+    function loadSimulado() {
+      // Em uma implementação real, esta função iniciaria um simulado com questões variadas
+      alert('Iniciando simulado completo. Em uma implementação real, isso carregaria questões de todas as matérias para um simulado completo.');
+      // Aqui você redirecionaria para a página de simulado ou carregaria dinamicamente o simulado
+    }
+  </script>
+</body>
+</html>

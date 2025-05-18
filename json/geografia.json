@@ -1,0 +1,86 @@
+{
+  "materia": "Geografia",
+  "totalQuestoes": 680,
+  "questoes": [
+    {
+      "id": 1,
+      "enunciado": "Sobre as características do relevo brasileiro, é correto afirmar que:",
+      "alternativas": [
+        "O ponto mais alto do Brasil é o Pico da Neblina, localizado na Serra do Imeri.",
+        "O Planalto das Guianas está localizado na região Norte e se estende pelos estados de Roraima, Amazonas e Pará.",
+        "A Depressão Sertaneja caracteriza-se por grandes altitudes e morros escarpados.",
+        "A Planície Amazônica é a menor unidade de relevo do Brasil em extensão territorial.",
+        "O Planalto Central Brasileiro está localizado exclusivamente na região Sudeste."
+      ],
+      "resposta": 1,
+      "explicacao": "O Planalto das Guianas está localizado na região Norte e se estende pelos estados de Roraima, Amazonas e Pará. É caracterizado por terrenos cristalinos antigos e faz fronteira com a Venezuela, Guiana, Suriname e Guiana Francesa.",
+      "dificuldade": "Média",
+      "concurso": "EsPCEx 2023",
+      "assunto": "Geografia Física do Brasil"
+    },
+    {
+      "id": 2,
+      "enunciado": "Em relação às características da população brasileira, assinale a alternativa correta:",
+      "alternativas": [
+        "A densidade demográfica é homogênea em todo o território nacional.",
+        "A região Norte é a mais populosa do país, com mais de 80 milhões de habitantes.",
+        "O Brasil ainda apresenta altas taxas de natalidade e mortalidade, características da primeira fase da transição demográfica.",
+        "A expectativa de vida da população brasileira vem aumentando nas últimas décadas.",
+        "O Brasil possui a maior população da América Latina, ultrapassando 300 milhões de habitantes."
+      ],
+      "resposta": 3,
+      "explicacao": "A expectativa de vida da população brasileira vem aumentando nas últimas décadas devido a melhorias nas condições de vida, saneamento básico, avanços na medicina e políticas públicas de saúde. Atualmente, a expectativa de vida ao nascer no Brasil é superior a 75 anos.",
+      "dificuldade": "Média",
+      "concurso": "ESA 2024",
+      "assunto": "Geografia Humana do Brasil"
+    },
+    {
+      "id": 3,
+      "enunciado": "Sobre o processo de globalização, é incorreto afirmar que:",
+      "alternativas": [
+        "Intensificou os fluxos de capitais, mercadorias e informações entre os países.",
+        "Favoreceu a formação de blocos econômicos regionais.",
+        "Diminuiu a importância das empresas transnacionais no cenário econômico mundial.",
+        "Contribuiu para o desenvolvimento das tecnologias de informação e comunicação.",
+        "Gerou maior interdependência entre as economias nacionais."
+      ],
+      "resposta": 2,
+      "explicacao": "A afirmação incorreta é que a globalização diminuiu a importância das empresas transnacionais no cenário econômico mundial. Na verdade, ocorreu justamente o contrário: a globalização aumentou significativamente o poder e a influência das empresas transnacionais, que passaram a operar em escala global e a exercer grande influência na economia mundial.",
+      "dificuldade": "Difícil",
+      "concurso": "AFA 2023",
+      "assunto": "Geopolítica Mundial"
+    },
+    {
+      "id": 4,
+      "enunciado": "Sobre os climas do Brasil, assinale a alternativa correta:",
+      "alternativas": [
+        "O clima semiárido ocorre predominantemente na região Norte do país.",
+        "O clima subtropical úmido é característico da região Sul do Brasil.",
+        "O clima equatorial, presente na Amazônia, caracteriza-se por baixas temperaturas e baixa umidade.",
+        "O clima tropical de altitude ocorre exclusivamente no litoral nordestino.",
+        "O clima tropical apresenta quatro estações bem definidas ao longo do ano."
+      ],
+      "resposta": 1,
+      "explicacao": "O clima subtropical úmido é característico da região Sul do Brasil, apresentando temperaturas médias entre 15°C e 20°C, com amplitude térmica significativa ao longo do ano e chuvas bem distribuídas. É o único clima do Brasil que pode apresentar geadas e neve em algumas localidades durante o inverno.",
+      "dificuldade": "Média",
+      "concurso": "EsPCEx 2022",
+      "assunto": "Climatologia"
+    },
+    {
+      "id": 5,
+      "enunciado": "Sobre os principais problemas ambientais globais, assinale a alternativa incorreta:",
+      "alternativas": [
+        "O aquecimento global está relacionado ao aumento da concentração de gases de efeito estufa na atmosfera.",
+        "A desertificação é um processo de degradação das terras nas regiões áridas, semiáridas e subúmidas secas.",
+        "A chuva ácida é causada principalmente pela emissão de dióxido de carbono e metano na atmosfera.",
+        "A redução da camada de ozônio foi acelerada pelo uso de substâncias como os clorofluorcarbonetos (CFCs).",
+        "A perda de biodiversidade está relacionada ao desmatamento, poluição e exploração excessiva dos recursos naturais."
+      ],
+      "resposta": 2,
+      "explicacao": "A afirmação incorreta é que a chuva ácida é causada principalmente pela emissão de dióxido de carbono e metano. Na verdade, a chuva ácida é formada principalmente pela emissão de dióxido de enxofre (SO₂) e óxidos de nitrogênio (NOₓ), que reagem com a água, o oxigênio e outros produtos químicos na atmosfera, formando soluções diluídas de ácido sulfúrico e ácido nítrico.",
+      "dificuldade": "Difícil",
+      "concurso": "ESA 2023",
+      "assunto": "Problemas Ambientais"
+    }
+  ]
+}

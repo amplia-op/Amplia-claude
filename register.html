@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro - Amplia Militar</title>
+  <link rel="stylesheet" href="css/register.css">  
+  <!-- Importando o cliente Supabase -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/supabase-js/2.39.7/supabase.min.js"></script>
+  <script type="module" src="js/auth-manager.js"></script>
+  
+</head>
+<body>
+  <main class="register-container">
+    <h1>Criar Conta</h1>
+    <form id="registerForm">
+      <div class="form-group">
+        <label for="nome">Nome completo</label>
+        <input type="text" id="nome" placeholder="Seu nome completo" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Seu email" required>
+      </div>
+      <div class="form-group">
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" placeholder="Crie uma senha" required minlength="6">
+        <small style="color: #718096; font-size: 0.8rem;">Mínimo de 8 caracteres</small>
+      </div>
+      <div class="form-group">
+        <label for="confirmarSenha">Confirmar senha</label>
+        <input type="password" id="confirmarSenha" placeholder="Confirme sua senha" required>
+      </div>
+      <div id="errorMessage" class="error-message">As senhas não conferem.</div>
+      <button type="submit" id="registerButton">Registrar</button>
+    </form>
+    <p>Já tem uma conta? <a href="login.html" class="login-link">Faça login aqui</a></p>
+  </main>
+    
+  <div id="loading" class="loading-overlay">
+    <div class="spinner"></div>
+  </div>
+
+  <script>
+
+  </script>
+  <script type="module" src="js/register.js"></script><!-- Funções específicas da página -->  
+</body>
+</html>

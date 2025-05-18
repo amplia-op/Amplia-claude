@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Correção - Quiz Militar</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f0f2f5;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    
+    .container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    
+    /* Header */
+    header {
+      background-color: #2e4057;
+      padding: 15px 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      color: white;
+      text-decoration: none;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    
+    .logo .icon {
+      margin-right: 10px;
+      font-size: 1.8rem;
+    }
+    
+    /* Results Container */
+    .results-container {
+      max-width: 900px;
+      margin: 40px auto;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    /* Results Header */
+    .results-header {
+      background: linear-gradient(to right, #2e4057, #4a5568);
+      color: white;
+      padding: 25px 30px;
+    }
+    
+    .results-title {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    
+    .results-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 15px;
+    }
+    
+    .result-subject {
+      font-size: 1.2rem;
+    }
+    
+    .result-score {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.15);
+      padding: 10px 20px;
+      border-radius: 8px;
+    }
+    
+    .score-value {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    
+    .score-label {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+    
+    /* Results Summary */
+    .results-summary {
+      padding: 25px 30px;
+      display: flex;
+      justify-content: space-between;
+      background-color: #f8fafc;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    
+    .summary-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 15px;
+    }
+    
+    .summary-value {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    
+    .summary-label {
+      font-size: 0.9rem;
+      color: #4a5568;
+      text-align: center;
+    }
+    
+    .correct-value {
+      color: #48bb78;
+    }
+    
+    .incorrect-value {
+      color: #f56565;
+    }
+    
+    .unanswered-value {
+      color: #a0aec0;
+    }
+    
+    /* Question Review */
+    .review-container {
+      padding: 30px;
+    }
+    
+    .review-title {
+      font-size: 1.3rem;
+      color: #2e4057;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    
+    .review-question {
+      margin-bottom: 30px;
+      padding-bottom: 25px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    
+    .review-question:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    
+    .question-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    
+    .question-number {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #4a5568;
+    }
+    
+    .question-status {
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    
+    .status-correct {
+      background-color: #c6f6d5;
+      color: #276749;
+    }
+    
+    .status-incorrect {
+      background-color: #fed7d7;
+      color: #c53030;
+    }
+    
+    .status-unanswered {
+      background-color: #e2e8f0;
+      color: #4a5568;
+    }
+    
+    .question-text {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #2e4057;
+      margin-bottom: 15px;
+    }
+    
+    .question-topic {
+      font-size: 0.9rem;
+      color: #718096;
+      margin-bottom: 15px;
+    }
+    
+    .options-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .option {
+      padding: 12px 15px;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .option-marker {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid #a0aec0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      font-weight: bold;
+      color: #a0aec0;
+    }
+    
+    .option-text {
+      font-size: 1rem;
+      color: #4a5568;
+      flex: 1;
+    }
+    
+    .option.correct {
+      background-color: #c6f6d5;
+      border-color: #48bb78;
+    }
+    
+    .option.correct .option-marker {
+      background-color: #48bb78;
+      border-color: #48bb78;
+      color: white;
+    }
+    
+    .option.incorrect {
+      background-color: #fed7d7;
+      border-color: #f56565;
+    }
+    
+    .option.incorrect .option-marker {
+      background-color: #f56565;
+      border-color: #f56565;
+      color: white;
+    }
+    
+    .option.selected {
+      background-color: #ebf8ff;
+      border-color: #4299e1;
+    }
+    
+    .option.selected .option-marker {
+      background-color: #4299e1;
+      border-color: #4299e1;
+      color: white;
+    }
+    
+    .option.selected.correct {
+      background-color: #c6f6d5;
+      border-color: #48bb78;
+    }
+    
+    .option.selected.incorrect {
+      background-color: #fed7d7;
+      border-color: #f56565;
+    }
+    
+    .option-marker.correct-answer {
+      background-color: #48bb78;
+      border-color: #48bb78;
+      color: white;
+    }
+    
+    .explanation {
+      margin-top: 15px;
+      padding: 15px;
+      background-color: #ebf8ff;
+      border-radius: 6px;
+      border-left: 4px solid #4299e1;
+    }
+    
+    .explanation-title {
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: #2e4057;
+    }
+    
+    .explanation-text {
+      font-size: 0.95rem;
+      color: #4a5568;
+      line-height: 1.5;
+    }
+    
+    /* Navigation */
+    .navigation {
+      display: flex;
+      padding: 20px 30px;
+      border-top: 1px solid #e2e8f0;
+      background-color: #f8fafc;
+      justify-content: space-between;
+    }
+    
+    .nav-group {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .btn {
+      padding: 12px 20px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    .btn-primary {
+      background-color: #4299e1;
+      color: white;
+      border: none;
+    }
+    
+    .btn-primary:hover {
+      background-color: #3182ce;
+    }
+    
+    .btn-outline {
+      background-color: transparent;
+      color: #4a5568;
+      border: 1px solid #cbd5e0;
+    }
+    
+    .btn-outline:hover {
+      background-color: #f0f2f5;
+      border-color: #a0aec0;
+    }
+    
+    .btn-success {
+      background-color: #48bb78;
+      color: white;
+      border: none;
+    }
+    
+    .btn-success:hover {
+      background-color: #38a169;
+    }
+    
+    /* Loading */
+    .loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 50px 0;
+    }
+    
+    .loading-spinner {
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      border-top: 4px solid #4299e1;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin-bottom: 15px;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    /* Media Queries */
+    @media (max-width: 768px) {
+      .results-container {
+        margin: 20px 15px;
+      }
+      
+      .results-info {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .result-score {
+        width: 100%;
+      }
+      
+      .results-summary {
+        flex-wrap: wrap;
+      }
+      
+      .summary-item {
+        flex: 1 0 33%;
+        margin-bottom: 15px;
+      }
+      
+      .navigation {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .nav-group {
+        justify-content: space-between;
+        width: 100%;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .option {
+        padding: 10px;
+      }
+      
+      .option-marker {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+      }
+      
+      .option-text {
+        font-size: 0.9rem;
+      }
+      
+      .question-text {
+        font-size: 1rem;
+      }
+      
+      .btn {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+      }
+      
+      .question-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="header-content">
+        <a href="index.html" class="logo">
+          <span class="icon">🎯</span>
+          <span>Quiz Militar</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Results Container -->
+    <div class="results-container">
+      <!-- Results Header -->
+      <div class="results-header">
+        <h1 class="results-title">Resultados do Quiz</h1>
+        <div class="results-info">
+          <div class="result-subject" id="resultSubject">Português</div>
+          <div class="result-score">
+            <div class="score-value" id="scoreValue">8/10</div>
+            <div class="score-label">Acertos</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results Summary -->
+      <div class="results-summary">
+        <div class="summary-item">
+          <div class="summary-value correct-value" id="correctCount">8</div>
+          <div class="summary-label">Acertos</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-value incorrect-value" id="incorrectCount">2</div>
+          <div class="summary-label">Erros</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-value unanswered-value" id="unansweredCount">0</div>
+          <div class="summary-label">Não respondidas</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-value" id="scorePercentage">80%</div>
+          <div class="summary-label">Aproveitamento</div>
+        </div>
+      </div>
+
+      <!-- Question Review -->
+      <div class="review-container" id="reviewContainer">
+        <h2 class="review-title">Revisão das Questões</h2>
+        
+        <!-- Perguntas serão adicionadas aqui pelo JavaScript -->
+        <div class="loading" id="loadingIndicator">
+          <div class="loading-spinner"></div>
+          <p>Carregando resultados...</p>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div class="navigation">
+        <div class="nav-group">
+          <button class="btn btn-outline" id="btnAssuntos" onclick="navigateToSubjects()">
+            <span>Assuntos</span>
+          </button>
+          <button class="btn btn-outline" id="btnSair" onclick="exitQuiz()">
+            <span>Sair</span>
+          </button>
+        </div>
+        <div class="nav-group">
+          <button class="btn btn-primary" id="btnTentarNovamente" onclick="retryQuiz()">
+            <span>Tentar Novamente</span>
+          </button>
+          <button class="btn btn-success" id="btnCompartilhar" onclick="shareResults()">
+            <span>Compartilhar</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Global Variables
+    let quizQuestions = [];
+    let userAnswers = [];
+    let quizSubject = '';
+    
+    // Initialize
+    window.addEventListener('load', () => {
+      loadResults();
+    });
+    
+    // Load Results
+    function loadResults() {
+      try {
+        // Retrieve data from localStorage
+        const answersData = localStorage.getItem('quizAnswers');
+        const questionsData = localStorage.getItem('quizQuestions');
+        const subjectData = localStorage.getItem('quizSubject');
+        
+        if (!answersData || !questionsData || !subjectData) {
+          showError('Não foi possível carregar os resultados. Por favor, tente novamente.');
+          return;
+        }
+        
+        // Parse the data
+        userAnswers = JSON.parse(answersData);
+        quizQuestions = JSON.parse(questionsData);
+        quizSubject = subjectData;
+        
+        // Update UI
+        updateSummary();
+        displayReview();
+        
+        // Hide loading indicator
+        document.getElementById('loadingIndicator').style.display = 'none';
+        
+      } catch (error) {
+        console.error('Erro ao carregar resultados:', error);
+        showError('Ocorreu um erro ao carregar os resultados.');
+      }
+    }
+    
+    // Update Summary
+    function updateSummary() {
+      // Count correct, incorrect, and unanswered questions
+      let correctCount = 0;
+      let incorrectCount = 0;
+      let unansweredCount = 0;
+      
+      quizQuestions.forEach((question, index) => {
+        if (userAnswers[index] === null) {
+          unansweredCount++;
+        } else if (userAnswers[index] === question.answer) {
+          correctCount++;
+        } else {
+          incorrectCount++;
+        }
+      });
+      
+      // Calculate score percentage
+      const totalQuestions = quizQuestions.length;
+      const scorePercentage = Math.round((correctCount / totalQuestions) * 100);
+      
+      // Update UI
+      document.getElementById('resultSubject').textContent = capitalizeFirstLetter(quizSubject);
+      document.getElementById('scoreValue').textContent = `${correctCount}/${totalQuestions}`;
+      document.getElementById('correctCount').textContent = correctCount;
+      document.getElementById('incorrectCount').textContent = incorrectCount;
+      document.getElementById('unansweredCount').textContent = unansweredCount;
+      document.getElementById('scorePercentage').textContent = `${scorePercentage}%`;
+    }
+    
+    // Display Review
+    function displayReview() {
+      const reviewContainer = document.getElementById('reviewContainer');
+      
+      // Keep the title
+      const reviewTitle = reviewContainer.querySelector('.review-title');
+      reviewContainer.innerHTML = '';
+      reviewContainer.appendChild(reviewTitle);
+      
+      // Add each question to the review
+      quizQuestions.forEach((question, index) => {
+        // Create question element
+        const questionElement = document.createElement('div');
+        questionElement.className = 'review-question';
+        
+        // Determine question status
+        let status = '';
+        let statusClass = '';
+        
+        if (userAnswers[index] === null) {
+          status = 'Não respondida';
+          statusClass = 'status-unanswered';
+        } else if (userAnswers[index] === question.answer) {
+          status = 'Correta';
+          statusClass = 'status-correct';
+        } else {
+          status = 'Incorreta';
+          statusClass = 'status-incorrect';
+        }
+        
+        // Question header
+        questionElement.innerHTML = `
+          <div class="question-header">
+            <div class="question-number">Questão ${index + 1}</div>
+            <div class="question-status ${statusClass}">${status}</div>
+          </div>
+          <div class="question-text">${question.text}</div>
+          <div class="question-topic">Tópico: ${question.topic}</div>
+          <div class="options-container" id="options-${index}"></div>
+        `;
+        
+        reviewContainer.appendChild(questionElement);
+        
+        // Add options
+        const optionsContainer = questionElement.querySelector(`#options-${index}`);
+        
+        question.options.forEach((option, optIndex) => {
+          const optionLetter = String.fromCharCode(65 + optIndex); // A, B, C, D, E
+          const optionElement = document.createElement('div');
+          
+          // Determine option classes
+          let optionClass = 'option';
+          
+          // Selected option
+          if (userAnswers[index] === optionLetter) {
+            optionClass += ' selected';
+            
+            // Selected and correct
+            if (optionLetter === question.answer) {
+              optionClass += ' correct';
+            } 
+            // Selected but incorrect
+            else {
+              optionClass += ' incorrect';
+            }
+          } 
+          // Not selected but is the correct answer
+          else if (optionLetter === question.answer) {
+            optionClass += ' correct';
+          }
+          
+          optionElement.className = optionClass;
+          
+          // Determine marker class
+          let markerClass = 'option-marker';
+          if (optionLetter === question.answer) {
+            markerClass += ' correct-answer';
+          }
+          
+          optionElement.innerHTML = `
+            <div class="${markerClass}">${optionLetter}</div>
+            <div class="option-text">${option}</div>
+          `;
+          
+          optionsContainer.appendChild(optionElement);
+        });
+        
+        // Add explanation if available
+        if (question.explanation) {
+          const explanationElement = document.createElement('div');
+          explanationElement.className = 'explanation';
+          explanationElement.innerHTML = `
+            <div class="explanation-title">Explicação:</div>
+            <div class="explanation-text">${question.explanation}</div>
+          `;
+          
+          questionElement.appendChild(explanationElement);
+        }
+      });
+    }
+    
+    // Show Error
+    function showError(message) {
+      const reviewContainer = document.getElementById('reviewContainer');
+      reviewContainer.innerHTML = `
+        <div style="text-align: center; padding: 30px;">
+          <p style="color: #e53e3e; margin-bottom: 15px;">${message}</p>
+          <button class="btn btn-primary" onclick="navigateToSubjects()">Voltar para Assuntos</button>
+        </div>
+      `;
+    }
+    
+    // Navigation Functions
+    function navigateToSubjects() {
+      window.location.href = 'assuntos.html';
+    }
+    
+    function exitQuiz() {
+      window.location.href = 'index.html';
+    }
+    
+    function retryQuiz() {
+      // Armazenar o assunto atual
+      localStorage.setItem('selectedSubject', quizSubject);
+      window.location.href = 'quiz.html';
+    }
+    
+    function shareResults() {
+      // Contar acertos
+      let correctCount = 0;
+      quizQuestions.forEach((question, index) => {
+        if (userAnswers[index] === question.answer) {
+          correctCount++;
+        }
+      });
+      
+      // Criar texto para compartilhamento
+      const totalQuestions = quizQuestions.length;
+      const scorePercentage = Math.round((correctCount / totalQuestions) * 100);
+      const shareText = `🎯 Quiz Militar | ${capitalizeFirstLetter(quizSubject)}\n` +
+                        `✅ Acertei ${correctCount} de ${totalQuestions} questões (${scorePercentage}%)\n` +
+                        `🔗 Faça o teste você também: quizmilitar.com.br`;
+      
+      // Verificar se a API de compartilhamento está disponível
+      if (navigator.share) {
+        navigator.share({
+          title: 'Meu resultado no Quiz Militar',
+          text: shareText,
+          url: 'https://quizmilitar.com.br'
+        }).catch(error => {
+          console.error('Erro ao compartilhar:', error);
+          // Fallback
+          copyToClipboard(shareText);
+        });
+      } else {
+        // Fallback para navegadores que não suportam a API de compartilhamento
+        copyToClipboard(shareText);
+      }
+    }
+    
+    // Helper function to copy text to clipboard
+    function copyToClipboard(text) {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      
+      alert('Texto copiado para a área de transferência!');
+    }
+    
+    // Helper Functions
+    function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+  </script>
+</body>
+</html>

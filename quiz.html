@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz - Quiz Militar</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f0f2f5;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    
+    .container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    
+    /* Header */
+    header {
+      background-color: #2e4057;
+      padding: 15px 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      color: white;
+      text-decoration: none;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    
+    .logo .icon {
+      margin-right: 10px;
+      font-size: 1.8rem;
+    }
+    
+    /* Quiz Container */
+    .quiz-container {
+      max-width: 900px;
+      margin: 40px auto;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 600px;
+    }
+    
+    /* Quiz Header */
+    .quiz-header {
+      background: linear-gradient(to right, #2e4057, #4a5568);
+      color: white;
+      padding: 20px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .quiz-info {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .quiz-subject {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    
+    .quiz-stats {
+      display: flex;
+      gap: 20px;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+    
+    /* Timer */
+    .timer-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .timer-circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    
+    .timer-circle::before {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      border-top-color: #4299e1;
+      animation: timer-countdown 30s linear forwards;
+      transform: rotate(-90deg);
+    }
+    
+    @keyframes timer-countdown {
+      0% {
+        transform: rotate(-90deg);
+      }
+      100% {
+        transform: rotate(270deg);
+      }
+    }
+    
+    .timer-value {
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+    
+    .timer-label {
+      margin-top: 5px;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+    
+    /* Question Content */
+    .question-container {
+      padding: 30px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .question-text {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: #2e4057;
+      margin-bottom: 25px;
+    }
+    
+    .question-image {
+      max-width: 100%;
+      margin: 15px 0;
+      border-radius: 4px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    /* Options */
+    .options-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    
+    .option {
+      padding: 15px;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+    }
+    
+    .option:hover {
+      background-color: #f8fafc;
+      border-color: #cbd5e0;
+    }
+    
+    .option-marker {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid #a0aec0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      font-weight: bold;
+      color: #a0aec0;
+    }
+    
+    .option-text {
+      font-size: 1.1rem;
+      color: #4a5568;
+      flex: 1;
+    }
+    
+    .option.selected {
+      background-color: #ebf8ff;
+      border-color: #4299e1;
+    }
+    
+    .option.selected .option-marker {
+      background-color: #4299e1;
+      border-color: #4299e1;
+      color: white;
+    }
+    
+    .option.correct {
+      background-color: #c6f6d5;
+      border-color: #48bb78;
+    }
+    
+    .option.correct .option-marker {
+      background-color: #48bb78;
+      border-color: #48bb78;
+      color: white;
+    }
+    
+    .option.incorrect {
+      background-color: #fed7d7;
+      border-color: #f56565;
+    }
+    
+    .option.incorrect .option-marker {
+      background-color: #f56565;
+      border-color: #f56565;
+      color: white;
+    }
+    
+    /* Navigation */
+    .quiz-navigation {
+      display: flex;
+      padding: 20px 30px;
+      border-top: 1px solid #e2e8f0;
+      background-color: #f8fafc;
+      justify-content: space-between;
+    }
+    
+    .nav-group {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .btn {
+      padding: 12px 20px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    .btn-primary {
+      background-color: #4299e1;
+      color: white;
+      border: none;
+    }
+    
+    .btn-primary:hover {
+      background-color: #3182ce;
+    }
+    
+    .btn-outline {
+      background-color: transparent;
+      color: #4a5568;
+      border: 1px solid #cbd5e0;
+    }
+    
+    .btn-outline:hover {
+      background-color: #f0f2f5;
+      border-color: #a0aec0;
+    }
+    
+    .btn-danger {
+      background-color: transparent;
+      color: #e53e3e;
+      border: 1px solid #fed7d7;
+    }
+    
+    .btn-danger:hover {
+      background-color: #fff5f5;
+      border-color: #feb2b2;
+    }
+    
+    /* Progress Bar */
+    .progress-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+    
+    .progress-bar {
+      height: 100%;
+      background-color: #4299e1;
+      width: 0;
+      transition: width 0.3s ease;
+    }
+    
+    /* Question Number Indicator */
+    .question-number {
+      position: absolute;
+      top: 25px;
+      right: 25px;
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 4px 10px;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .modal-content {
+      background-color: white;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 500px;
+      padding: 30px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      transform: translateY(-20px);
+      transition: transform 0.3s ease;
+    }
+    
+    .modal-overlay.active .modal-content {
+      transform: translateY(0);
+    }
+    
+    .modal-header {
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    
+    .modal-title {
+      font-size: 1.4rem;
+      color: #2e4057;
+    }
+    
+    .modal-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 25px;
+    }
+    
+    /* Time's Up */
+    .times-up {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 100;
+    }
+    
+    .times-up.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .times-up h2 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+    
+    .times-up p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+    
+    /* Media Queries */
+    @media (max-width: 768px) {
+      .quiz-container {
+        margin: 20px 15px;
+        min-height: 500px;
+      }
+      
+      .quiz-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+      }
+      
+      .timer-container {
+        align-self: center;
+      }
+      
+      .quiz-navigation {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .nav-group {
+        justify-content: space-between;
+        width: 100%;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .option {
+        padding: 12px;
+      }
+      
+      .option-marker {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+      }
+      
+      .option-text {
+        font-size: 0.95rem;
+      }
+      
+      .question-text {
+        font-size: 1.1rem;
+      }
+      
+      .btn {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="header-content">
+        <a href="index.html" class="logo">
+          <span class="icon">🎯</span>
+          <span>Quiz Militar</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Quiz Container -->
+    <div class="quiz-container">
+      <!-- Progress Bar -->
+      <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+
+      <!-- Quiz Header -->
+      <div class="quiz-header">
+        <div class="quiz-info">
+          <div class="quiz-subject" id="quizSubject">Português</div>
+          <div class="quiz-stats">
+            <span id="questionNumber">Questão 1/25</span>
+            <span id="questionTopic">Tópico: Interpretação de Texto</span>
+          </div>
+        </div>
+        <div class="timer-container">
+          <div class="timer-circle">
+            <div class="timer-value" id="timerValue">30</div>
+          </div>
+          <div class="timer-label">segundos</div>
+        </div>
+      </div>
+
+      <!-- Question Content -->
+      <div class="question-container">
+        <div class="question-text" id="questionText">
+          "A linguagem funciona como um elemento de interação social, por meio do qual os falantes se comunicam, expressam seus pensamentos, ideias, sentimentos e ações."
+
+          De acordo com o texto acima, pode-se afirmar que:
+        </div>
+        <div class="options-container" id="optionsContainer">
+          <div class="option" data-option="A" onclick="selectOption(this)">
+            <div class="option-marker">A</div>
+            <div class="option-text">A linguagem tem como função única e exclusiva a expressão de sentimentos.</div>
+          </div>
+          <div class="option" data-option="B" onclick="selectOption(this)">
+            <div class="option-marker">B</div>
+            <div class="option-text">A principal função da linguagem é a interação social.</div>
+          </div>
+          <div class="option" data-option="C" onclick="selectOption(this)">
+            <div class="option-marker">C</div>
+            <div class="option-text">A linguagem independe do contexto social em que é produzida.</div>
+          </div>
+          <div class="option" data-option="D" onclick="selectOption(this)">
+            <div class="option-marker">D</div>
+            <div class="option-text">A comunicação humana prescinde da linguagem para sua efetivação.</div>
+          </div>
+          <div class="option" data-option="E" onclick="selectOption(this)">
+            <div class="option-marker">E</div>
+            <div class="option-text">Os pensamentos e ideias não podem ser expressos por meio da linguagem.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div class="quiz-navigation">
+        <div class="nav-group">
+          <button class="btn btn-outline" id="btnSubjects" onclick="showSubjectsModal()">
+            <span>Assuntos</span>
+          </button>
+          <button class="btn btn-danger" id="btnQuit" onclick="showQuitModal()">
+            <span>Sair</span>
+          </button>
+        </div>
+        <div class="nav-group">
+          <button class="btn btn-outline" id="btnPrevious" onclick="previousQuestion()" disabled>
+            <span>Anterior</span>
+          </button>
+          <button class="btn btn-primary" id="btnNext" onclick="nextQuestion()">
+            <span>Próxima</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Time's Up Overlay -->
+      <div class="times-up" id="timesUpOverlay">
+        <h2>Tempo Esgotado!</h2>
+        <p>Você não respondeu a tempo.</p>
+        <button class="btn btn-primary" onclick="nextQuestion()">Continuar</button>
+      </div>
+    </div>
+
+    <!-- Subjects Modal -->
+    <div class="modal-overlay" id="subjectsModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">Escolher Assunto</h3>
+        </div>
+        <p>Escolha o assunto que deseja praticar:</p>
+        <div class="options-container" style="margin-top: 20px;">
+          <div class="option" onclick="changeSubject('portugues')">
+            <div class="option-marker">📝</div>
+            <div class="option-text">Português</div>
+          </div>
+          <div class="option" onclick="changeSubject('matematica')">
+            <div class="option-marker">📊</div>
+            <div class="option-text">Matemática</div>
+          </div>
+          <div class="option" onclick="changeSubject('geografia')">
+            <div class="option-marker">🌎</div>
+            <div class="option-text">Geografia</div>
+          </div>
+          <div class="option" onclick="changeSubject('historia')">
+            <div class="option-marker">📚</div>
+            <div class="option-text">História</div>
+          </div>
+          <div class="option" onclick="changeSubject('ingles')">
+            <div class="option-marker">🌐</div>
+            <div class="option-text">Inglês</div>
+          </div>
+        </div>
+        <div class="modal-buttons">
+          <button class="btn btn-outline" onclick="closeSubjectsModal()">Cancelar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quit Modal -->
+    <div class="modal-overlay" id="quitModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">Sair do Quiz</h3>
+        </div>
+        <p>Tem certeza que deseja sair? Seu progresso nesta sessão será perdido.</p>
+        <div class="modal-buttons">
+          <button class="btn btn-outline" onclick="closeQuitModal()">Cancelar</button>
+          <button class="btn btn-danger" onclick="quitQuiz()">Sair</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Global Variables
+    let currentQuestionIndex = 0;
+    let currentSubject = 'portugues';
+    let questions = [];
+    let userAnswers = [];
+    let timer;
+    let timeLeft = 30;
+    let selectedOption = null;
+    
+    // Initialize Quiz
+    window.addEventListener('load', () => {
+      loadQuestions(currentSubject);
+    });
+    
+    // Load Questions from JSON
+    async function loadQuestions(subject) {
+      try {
+        // Na implementação real, aqui você carregaria o arquivo JSON
+        // const response = await fetch(`/data/${subject}.json`);
+        // const data = await response.json();
+        // questions = data.questions;
+        
+        // Para demonstração, vamos usar um array de perguntas mockado
+        questions = getMockQuestions(subject);
+        
+        // Reset quiz state
+        currentQuestionIndex = 0;
+        userAnswers = new Array(questions.length).fill(null);
+        
+        // Update UI
+        displayQuestion(currentQuestionIndex);
+        updateProgressBar();
+        document.getElementById('quizSubject').textContent = capitalizeFirstLetter(subject);
+        
+        // Desabilitar botão anterior na primeira questão
+        document.getElementById('btnPrevious').disabled = true;
+      } catch (error) {
+        console.error('Erro ao carregar questões:', error);
+      }
+    }
+    
+    // Display Current Question
+    function displayQuestion(index) {
+      // Reset timer
+      resetTimer();
+      
+      // Get current question
+      const question = questions[index];
+      
+      // Update question text
+      document.getElementById('questionText').innerHTML = question.text;
+      
+      // Update question metadata
+      document.getElementById('questionNumber').textContent = `Questão ${index + 1}/${questions.length}`;
+      document.getElementById('questionTopic').textContent = `Tópico: ${question.topic}`;
+      
+      // Create options
+      const optionsContainer = document.getElementById('optionsContainer');
+      optionsContainer.innerHTML = '';
+      
+      question.options.forEach((option, optIndex) => {
+        const optionElement = document.createElement('div');
+        optionElement.className = 'option';
+        optionElement.setAttribute('data-option', String.fromCharCode(65 + optIndex)); // A, B, C, D, E
+        optionElement.onclick = function() { selectOption(this); };
+        
+        // Verificar se esta opção foi selecionada anteriormente
+        if (userAnswers[currentQuestionIndex] === String.fromCharCode(65 + optIndex)) {
+          optionElement.classList.add('selected');
+          selectedOption = optionElement;
+        }
+        
+        optionElement.innerHTML = `
+          <div class="option-marker">${String.fromCharCode(65 + optIndex)}</div>
+          <div class="option-text">${option}</div>
+        `;
+        
+        optionsContainer.appendChild(optionElement);
+      });
+      
+      // Update navigation buttons
+      document.getElementById('btnPrevious').disabled = index === 0;
+      
+      // Se for a última questão, mudar o texto do botão para "Finalizar"
+      const nextButton = document.getElementById('btnNext');
+      if (index === questions.length - 1) {
+        nextButton.textContent = 'Finalizar';
+      } else {
+        nextButton.textContent = 'Próxima';
+      }
+    }
+    
+    // Select Option
+    function selectOption(element) {
+      // Remove selected class from all options
+      const options = document.querySelectorAll('.option');
+      options.forEach(option => option.classList.remove('selected'));
+      
+      // Add selected class to clicked option
+      element.classList.add('selected');
+      
+      // Store selected option
+      selectedOption = element;
+      
+      // Save user answer
+      userAnswers[currentQuestionIndex] = element.getAttribute('data-option');
+    }
+    
+    // Next Question
+    function nextQuestion() {
+      // Hide times up overlay if visible
+      document.getElementById('timesUpOverlay').classList.remove('show');
+      
+      // Check if it's the last question
+      if (currentQuestionIndex === questions.length - 1) {
+        // Redirect to results page
+        finishQuiz();
+        return;
+      }
+      
+      // Move to next question
+      currentQuestionIndex++;
+      displayQuestion(currentQuestionIndex);
+      updateProgressBar();
+      
+      // Reset selection
+      selectedOption = null;
+    }
+    
+    // Previous Question
+    function previousQuestion() {
+      // Move to previous question
+      if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        displayQuestion(currentQuestionIndex);
+        updateProgressBar();
+      }
+    }
+    
+    // Update Progress Bar
+    function updateProgressBar() {
+      const progressPercentage = ((currentQuestionIndex + 1) / questions.length) * 100;
+      document.getElementById('progressBar').style.width = `${progressPercentage}%`;
+    }
+    
+    // Timer Functions
+    function resetTimer() {
+      // Clear existing timer
+      clearInterval(timer);
+      
+      // Reset time left
+      timeLeft = 30;
+      document.getElementById('timerValue').textContent = timeLeft;
+      
+      // Reset timer animation
+      const timerCircle = document.querySelector('.timer-circle');
+      timerCircle.style.animation = 'none';
+      setTimeout(() => {
+        timerCircle.style.animation = 'timer-countdown 30s linear forwards';
+      }, 10);
+      
+      // Start new timer
+      startTimer();
+    }
+    
+    function startTimer() {
+      timer = setInterval(() => {
+        timeLeft--;
+        document.getElementById('timerValue').textContent = timeLeft;
+        
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          timeIsUp();
+        }
+      }, 1000);
+    }
+    
+    function timeIsUp() {
+      // Show times up overlay
+      document.getElementById('timesUpOverlay').classList.add('show');
+      
+      // If no option was selected, mark as unanswered
+      if (!selectedOption) {
+        userAnswers[currentQuestionIndex] = null;
+      }
+    }
+    
+    // Finish Quiz
+    function finishQuiz() {
+      // Store user answers in local storage for the results page
+      localStorage.setItem('quizAnswers', JSON.stringify(userAnswers));
+      localStorage.setItem('quizQuestions', JSON.stringify(questions));
+      localStorage.setItem('quizSubject', currentSubject);
+      
+      // Redirect to results page
+      window.location.href = 'correcao.html';
+    }
+    
+    // Show/Hide Modals
+    function showSubjectsModal() {
+      document.getElementById('subjectsModal').classList.add('active');
+      pauseTimer();
+    }
+    
+    function closeSubjectsModal() {
+      document.getElementById('subjectsModal').classList.remove('active');
+      resumeTimer();
+    }
+    
+    function showQuitModal() {
+      document.getElementById('quitModal').classList.add('active');
+      pauseTimer();
+    }
+    
+    function closeQuitModal() {
+      document.getElementById('quitModal').classList.remove('active');
+      resumeTimer();
+    }
+    
+    function pauseTimer() {
+      clearInterval(timer);
+      document.querySelector('.timer-circle').style.animationPlayState = 'paused';
+    }
+    
+    function resumeTimer() {
+      startTimer();
+      document.querySelector('.timer-circle').style.animationPlayState = 'running';
+    }
+    
+    // Change Subject
+    function changeSubject(subject) {
+      currentSubject = subject;
+      loadQuestions(subject);
+      closeSubjectsModal();
+    }
+    
+    // Quit Quiz
+    function quitQuiz() {
+      window.location.href = 'assuntos.html';
+    }
+    
+    // Helper Functions
+    function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+    
+    // Mock Data (para demonstração)
+    function getMockQuestions(subject) {
+      // Aqui, em uma implementação real, você carregaria as questões do arquivo JSON
+      // Este é apenas um exemplo para demonstração
+      
+      if (subject === 'portugues') {
+        return [
+          {
+            id: 1,
+            text: '"A linguagem funciona como um elemento de interação social, por meio do qual os falantes se comunicam, expressam seus pensamentos, ideias, sentimentos e ações."<br><br>De acordo com o texto acima, pode-se afirmar que:',
+            options: [
+              'A linguagem tem como função única e exclusiva a expressão de sentimentos.',
+              'A principal função da linguagem é a interação social.',
+              'A linguagem independe do contexto social em que é produzida.',
+              'A comunicação humana prescinde da linguagem para sua efetivação.',
+              'Os pensamentos e ideias não podem ser expressos por meio da linguagem.'
+            ],
+            answer: 'B',
+            topic: 'Interpretação de Texto',
+            difficulty: 'Médio'
+          },
+          {
+            id: 2,
+            text: 'Assinale a alternativa em que todas as palavras estão grafadas corretamente:',
+            options: [
+              'Exceção, excessão, intercessão.',
+              'Excesso, excesão, interseção.',
+              'Exceção, excesso, intercessão.',
+              'Excesão, excesso, interseção.',
+              'Exceção, excesso, interceptação.'
+            ],
+            answer: 'C',
+            topic: 'Ortografia',
+            difficulty: 'Fácil'
+          },
+          {
+            id: 3,
+            text: 'Na frase "As estrelas brilham no céu", o sujeito é:',
+            options: [
+              'Indeterminado',
+              'Oculto',
+              'Composto',
+              'Simples',
+              'Inexistente'
+            ],
+            answer: 'D',
+            topic: 'Análise Sintática',
+            difficulty: 'Fácil'
+          }
+        ];
+      } else if (subject === 'matematica') {
+        return [
+          {
+            id: 1,
+            text: 'Qual é o valor de x na equação 3x - 7 = 14?',
+            options: [
+              'x = 5',
+              'x = 6',
+              'x = 7',
+              'x = 8',
+              'x = 9'
+            ],
+            answer: 'C',
+            topic: 'Equações do 1º Grau',
+            difficulty: 'Fácil'
+          },
+          {
+            id: 2,
+            text: 'Um capital de R$ 5.000,00 foi aplicado a juros simples durante 8 meses, a uma taxa de 2% ao mês. Qual foi o montante após esse período?',
+            options: [
+              'R$ 5.400,00',
+              'R$ 5.

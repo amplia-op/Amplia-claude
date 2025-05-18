@@ -1,0 +1,86 @@
+{
+  "materia": "História",
+  "totalQuestoes": 750,
+  "questoes": [
+    {
+      "id": 1,
+      "enunciado": "Sobre o período colonial brasileiro, assinale a alternativa correta:",
+      "alternativas": [
+        "A economia colonial brasileira foi baseada principalmente na policultura de subsistência.",
+        "O Tratado de Tordesilhas estabeleceu a divisão da América do Sul entre Espanha e Portugal.",
+        "A Guerra dos Emboabas ocorreu no século XVIII e envolveu paulistas e portugueses na disputa pelo controle das minas de ouro.",
+        "As capitanias hereditárias foram instauradas no Brasil já no século XVII.",
+        "A invasão holandesa no Nordeste brasileiro ocorreu durante o reinado de D. João VI."
+      ],
+      "resposta": 2,
+      "explicacao": "A Guerra dos Emboabas ocorreu entre 1707 e 1709, no atual estado de Minas Gerais, e foi um conflito que opôs os bandeirantes paulistas (descobridores das minas de ouro) e os portugueses ou forasteiros (chamados pejorativamente de 'emboabas' pelos paulistas). O motivo principal foi a disputa pelo controle das recém-descobertas minas de ouro na região.",
+      "dificuldade": "Média",
+      "concurso": "EsPCEx 2023",
+      "assunto": "Brasil Colônia"
+    },
+    {
+      "id": 2,
+      "enunciado": "Sobre a Revolução Industrial, é correto afirmar que:",
+      "alternativas": [
+        "Teve seu início na França, espalhando-se posteriormente para a Inglaterra.",
+        "Constituiu-se inicialmente no setor da indústria têxtil, com a introdução de máquinas a vapor.",
+        "Foi um processo que ocorreu de forma homogênea e simultânea em todos os países europeus.",
+        "Diminuiu significativamente a urbanização, pois os trabalhadores preferiam permanecer no campo.",
+        "Favoreceu a classe operária, garantindo desde o início boas condições de trabalho e salários justos."
+      ],
+      "resposta": 1,
+      "explicacao": "A Revolução Industrial teve início na Inglaterra, na segunda metade do século XVIII, e seu primeiro setor a ser mecanizado foi o têxtil, com a introdução de máquinas a vapor como a spinning jenny e o tear mecânico. A Inglaterra reunia condições favoráveis como acumulação de capital, disponibilidade de mão de obra, matérias-primas e mercado consumidor.",
+      "dificuldade": "Fácil",
+      "concurso": "ESA 2024",
+      "assunto": "História Geral Moderna"
+    },
+    {
+      "id": 3,
+      "enunciado": "A Guerra do Paraguai (1864-1870) envolveu quatro países sul-americanos. Assinale a alternativa que apresenta corretamente esses países:",
+      "alternativas": [
+        "Brasil, Argentina, Uruguai e Bolívia",
+        "Brasil, Argentina, Paraguai e Chile",
+        "Brasil, Argentina, Uruguai e Paraguai",
+        "Brasil, Paraguai, Bolívia e Peru",
+        "Brasil, Argentina, Paraguai e Colômbia"
+      ],
+      "resposta": 2,
+      "explicacao": "A Guerra do Paraguai (1864-1870) foi o maior conflito armado internacional ocorrido na América do Sul e envolveu Brasil, Argentina e Uruguai, formando a Tríplice Aliança, contra o Paraguai, governado por Solano López. O conflito resultou na morte de aproximadamente 50% da população paraguaia e destruiu sua economia.",
+      "dificuldade": "Fácil",
+      "concurso": "AFA 2023",
+      "assunto": "Brasil Império"
+    },
+    {
+      "id": 4,
+      "enunciado": "Sobre a Segunda Guerra Mundial (1939-1945), assinale a alternativa incorreta:",
+      "alternativas": [
+        "Foi iniciada com a invasão da Polônia pela Alemanha nazista.",
+        "Os Estados Unidos entraram oficialmente na guerra após o ataque japonês a Pearl Harbor.",
+        "A Itália, sob o comando de Benito Mussolini, combateu ao lado dos Aliados.",
+        "A União Soviética participou da guerra lutando contra as forças do Eixo.",
+        "O lançamento das bombas atômicas sobre Hiroshima e Nagasaki contribuiu para a rendição do Japão."
+      ],
+      "resposta": 2,
+      "explicacao": "A afirmação incorreta é que a Itália, sob o comando de Benito Mussolini, combateu ao lado dos Aliados. Na verdade, a Itália fascista de Mussolini foi uma das principais potências do Eixo, junto com a Alemanha nazista e o Japão imperial. A Itália só mudou de lado em 1943, após a queda de Mussolini e a invasão aliada da Sicília, quando o novo governo italiano declarou guerra à Alemanha.",
+      "dificuldade": "Média",
+      "concurso": "EsPCEx 2022",
+      "assunto": "História Geral Contemporânea"
+    },
+    {
+      "id": 5,
+      "enunciado": "Sobre o período da Ditadura Militar no Brasil (1964-1985), assinale a alternativa correta:",
+      "alternativas": [
+        "O AI-5 (Ato Institucional nº 5) foi o primeiro ato institucional promulgado pelos militares após o golpe de 1964.",
+        "O 'milagre econômico' brasileiro ocorreu durante o governo do general Ernesto Geisel.",
+        "O bipartidarismo foi instituído com a criação do MDB (oposição) e da ARENA (situação).",
+        "A Guerrilha do Araguaia foi um movimento armado de esquerda que atuou principalmente na região Sul do país.",
+        "O movimento 'Diretas Já' defendia a manutenção do regime militar com eleições indiretas para presidente."
+      ],
+      "resposta": 2,
+      "explicacao": "Durante o regime militar, foi instituído o bipartidarismo através do Ato Institucional nº 2 (AI-2), em 1965. Foram criados dois partidos: a Aliança Renovadora Nacional (ARENA), que apoiava o governo militar, e o Movimento Democrático Brasileiro (MDB), que representava a oposição consentida pelo regime. Esse sistema vigorou até 1979, quando foi restabelecido o pluripartidarismo.",
+      "dificuldade": "Média",
+      "concurso": "ESA 2023",
+      "assunto": "Brasil República"
+    }
+  ]
+}
