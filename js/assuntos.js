@@ -13,11 +13,11 @@
 
 // Caminhos para os arquivos JSON de questões
 const questoesJsonPaths = {
-  portugues: 'questoes/portugues.json',
-  matematica: 'questoes/matematica.json',
-  geografia: 'questoes/geografia.json',
-  historia: 'questoes/historia.json',
-  ingles: 'questoes/ingles.json'
+  portugues: 'json/portugues.json',
+  matematica: 'json/matematica.json',
+  geografia: 'json/geografia.json',
+  historia: 'json/historia.json',
+  ingles: 'json/ingles.json'
 };
 
 // Dados simulados das matérias
