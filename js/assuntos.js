@@ -4,11 +4,11 @@
  * incluindo animações, carregamento de questões e simulados.
  * 
  * As questões são carregadas de arquivos JSON específicos para cada matéria:
- * - questoes/portugues.json
- * - questoes/matematica.json
- * - questoes/geografia.json
- * - questoes/historia.json
- * - questoes/ingles.json
+ * - json/portugues.json
+ * - json/matematica.json
+ * - json/geografia.json
+ * - json/historia.json
+ * - json/ingles.json
  */
 
 // Caminhos para os arquivos JSON de questões
@@ -338,7 +338,7 @@ function loadQuestions(materiaCode) {
       localStorage.setItem('questoesMateria', JSON.stringify(questoes));
       
       // Redirecionando para a página de questões
-      window.location.href = `questoes.html?materia=${materiaCode}`;
+      window.location.href = `quiz.html?materia=${materiaCode}`;
     })
     .catch(error => {
       console.error('Erro:', error);
