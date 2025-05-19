@@ -1,0 +1,170 @@
+<!DOCTYPE html> 
+<html lang="pt-BR"> 
+<head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Quiz - Amplia Militar</title> 
+  <link rel="stylesheet" href="css/quiz.css"> 
+
+</head> 
+<body> 
+<div class="container"> 
+<!-- Header --> 
+    <header> 
+      <div class="header-content"> 
+        <a href="index.html" class="logo"> 
+          <span class="icon">🎯</span> 
+          <span>Amplia Militar</span> 
+        </a> 
+        </div> 
+    </header>
+<!-- Navigation -->
+<nav class="main-nav">
+  <ul class="nav-links">
+    <li><a href="index.html">Início</a></li>
+    <li><a href="assuntos.html">Assuntos</a></li>
+    <li><a href="#">Planos</a></li>
+    <li><a href="#">Meu Progresso</a></li>
+    <li><a href="#">Perfil</a></li>
+  </ul>
+</nav>
+
+<!-- Quiz Container -->
+<div class="quiz-container">
+  <div class="quiz-header">
+    <div class="subject-info">
+      <h1 id="subject-title">Carregando...</h1>
+      <p id="subject-description">Preparando as questões...</p>
+    </div>
+    <div class="quiz-meta">
+      <div class="meta-item">
+        <span class="meta-label">Questão</span>
+        <span id="current-question">1</span>/<span id="total-questions">10</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Tempo</span>
+        <span id="timer">00:00</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Pontuação</span>
+        <span id="score">0</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="question-container">
+    <div class="question-content">
+      <div class="question-number">Questão <span id="question-number">1</span></div>
+      <div id="question-text" class="question-text">
+        Carregando a questão...
+      </div>
+      <div class="question-source" id="question-source">Fonte: EsPCEx 2023</div>
+    </div>
+
+    <div class="options-container" id="options-container">
+      <!-- As opções serão inseridas dinamicamente pelo JavaScript -->
+    </div>
+
+    <div class="question-actions">
+      <button id="check-answer" class="btn-action btn-primary">Verificar Resposta</button>
+      <button id="next-question" class="btn-action btn-secondary" disabled>Próxima Questão</button>
+    </div>
+  </div>
+
+  <div class="explanation-container" id="explanation-container" style="display: none;">
+    <div class="explanation-header">
+      <h2>Explicação</h2>
+    </div>
+    <div class="explanation-content" id="explanation-content">
+      <!-- A explicação será inserida dinamicamente pelo JavaScript -->
+    </div>
+  </div>
+
+  <div class="result-container" id="result-container" style="display: none;">
+    <div class="result-header">
+      <h2>Resultado Final</h2>
+    </div>
+    <div class="result-content">
+      <div class="result-score">
+        <div class="score-value" id="final-score">0</div>
+        <div class="score-label">Pontuação</div>
+      </div>
+      <div class="result-stats">
+        <div class="stat-item">
+          <div class="stat-value" id="correct-answers">0</div>
+          <div class="stat-label">Acertos</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" id="total-time">00:00</div>
+          <div class="stat-label">Tempo Total</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" id="avg-time">00:00</div>
+          <div class="stat-label">Tempo Médio</div>
+        </div>
+      </div>
+      <div class="result-charts">
+        <div class="chart-container">
+          <canvas id="performance-chart"></canvas>
+        </div>
+      </div>
+      <div class="result-actions">
+        <button id="review-questions" class="btn-action btn-secondary">Revisar Questões</button>
+        <button id="return-subjects" class="btn-action btn-primary">Voltar aos Assuntos</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Progress Bar -->
+<div class="progress-bar-quiz">
+  <div class="progress-fill" id="progress-fill" style="width: 10%;"></div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-column">
+      <h3>Quiz Militar</h3>
+      <p>A melhor plataforma de preparação para concursos militares do Brasil.</p>
+      <div class="social-links">
+        <a href="#" class="social-icon">f</a>
+        <a href="#" class="social-icon">in</a>
+        <a href="#" class="social-icon">ig</a>
+        <a href="#" class="social-icon">yt</a>
+      </div>
+    </div>
+    <div class="footer-column">
+      <h3>Links Rápidos</h3>
+      <ul>
+        <li><a href="login.html">Início</a></li>
+        <li><a href="assuntos.html">Assuntos</a></li>
+        <li><a href="#">Planos</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Contato</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>Concursos</h3>
+      <ul>
+        <li><a href="#">EsPCEx</a></li>
+        <li><a href="#">ESA</a></li>
+        <li><a href="#">AFA</a></li>
+        <li><a href="#">Escola Naval</a></li>
+        <li><a href="#">Polícia Militar</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>Contato</h3>
+      <ul>
+        <li><a href="mailto:contato@quizmilitar.com.br">contato@quizmilitar.com.br</a></li>
+        <li><a href="tel:+55119XXXXXXXX">(11) 9XXXX-XXXX</a></li>
+        <li>São Paulo, SP</li>
+      </ul>
+    </div>
+  </div>
+  <div class="copyright">
+    &copy; 2025 Quiz Militar. Todos os direitos reservados.
+  </div>
+</footer>
+</div> <!-- Script para renderizar gráficos --> <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script> <script type="module" src="js/quiz.js"></script> </body> </html>
